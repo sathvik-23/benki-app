@@ -21,3 +21,4 @@ CREATE TRIGGER update_sessions_updated_at
 -- Add comment to function
 COMMENT ON FUNCTION update_session_updated_at() IS 'Automatically updates the updated_at timestamp when a session is updated';
 
+

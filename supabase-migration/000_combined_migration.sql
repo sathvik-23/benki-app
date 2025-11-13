@@ -153,3 +153,4 @@ CREATE POLICY "Users can delete own chunks" ON transcription_chunks
 -- 
 -- ============================================================================
 
+

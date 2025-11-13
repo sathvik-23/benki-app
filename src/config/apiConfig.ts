@@ -12,3 +12,4 @@ export const API_CONFIG = {
   WHISPER_MODEL: "whisper-1", // OpenAI Whisper model
 };
 
+

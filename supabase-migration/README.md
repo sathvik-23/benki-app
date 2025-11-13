@@ -124,3 +124,4 @@ DROP TABLE IF EXISTS sessions;
 - Check that `auth.uid()` is returning the correct user ID
 - Review Supabase logs for policy violations
 
+

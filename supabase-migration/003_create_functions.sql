@@ -13,3 +13,4 @@ $$ LANGUAGE SQL SECURITY DEFINER;
 -- Add comment to function
 COMMENT ON FUNCTION get_full_transcript(UUID) IS 'Returns the concatenated transcript text for a given session';
 
+

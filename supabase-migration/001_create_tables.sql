@@ -28,3 +28,4 @@ CREATE TABLE IF NOT EXISTS transcription_chunks (
 COMMENT ON TABLE sessions IS 'Stores recording sessions for users';
 COMMENT ON TABLE transcription_chunks IS 'Stores individual transcription chunks for each session';
 
+

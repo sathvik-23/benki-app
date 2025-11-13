@@ -40,3 +40,4 @@ CREATE POLICY "Users can delete own chunks" ON transcription_chunks
     session_id IN (SELECT id FROM sessions WHERE user_id = auth.uid())
   );
 
+

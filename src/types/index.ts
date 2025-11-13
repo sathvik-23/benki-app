@@ -7,3 +7,4 @@ export type RecordingStatus = "idle" | "recording" | "uploading" | "transcribing
 // Re-export Supabase types for convenience
 export type { Session, TranscriptionChunk, SessionWithChunks, SessionType, SessionStatus } from "./supabase";
 
+

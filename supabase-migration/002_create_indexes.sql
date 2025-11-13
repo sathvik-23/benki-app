@@ -12,3 +12,4 @@ CREATE INDEX IF NOT EXISTS idx_sessions_user_status ON sessions(user_id, status)
 CREATE INDEX IF NOT EXISTS idx_chunks_session_id ON transcription_chunks(session_id);
 CREATE INDEX IF NOT EXISTS idx_chunks_chunk_index ON transcription_chunks(session_id, chunk_index);
 
+

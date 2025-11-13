@@ -8,3 +8,4 @@ ALTER TABLE sessions ENABLE ROW LEVEL SECURITY;
 -- Enable Row Level Security on transcription_chunks table
 ALTER TABLE transcription_chunks ENABLE ROW LEVEL SECURITY;
 
+
