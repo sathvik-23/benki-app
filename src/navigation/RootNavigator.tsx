@@ -4,11 +4,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useAuth } from "../contexts/AuthContext";
 import { ActivityIndicator, View, StyleSheet } from "react-native";
 import RecordScreen from "../screens/RecordScreen";
-import LiveTranscribeScreen from "../screens/LiveTranscribeScreen";
 import HistoryScreen from "../screens/HistoryScreen";
 import SessionDetailScreen from "../screens/SessionDetailScreen";
 import LoginScreen from "../screens/LoginScreen";
 import SignupScreen from "../screens/SignupScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import { BenkiLogo } from "../components/BenkiLogo";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -43,7 +44,7 @@ function MainStack() {
         options={{
           title: "Session Details",
           headerStyle: {
-            backgroundColor: "#f5f5f5",
+            backgroundColor: "#fff",
           },
           headerTintColor: "#000",
         }}
@@ -60,13 +61,13 @@ function MainTabs() {
     <Tab.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#f5f5f5",
+          backgroundColor: "#fff",
         },
         headerTintColor: "#000",
         headerTitleStyle: {
           fontWeight: "600",
         },
-        tabBarActiveTintColor: "#2196F3",
+        tabBarActiveTintColor: "#FF3B00",
         tabBarInactiveTintColor: "#666",
       }}
     >
@@ -74,16 +75,9 @@ function MainTabs() {
         name="Record"
         component={RecordScreen}
         options={{
-          title: "Record & Transcribe",
+          title: "Record",
           tabBarLabel: "Record",
-        }}
-      />
-      <Tab.Screen
-        name="Live"
-        component={LiveTranscribeScreen}
-        options={{
-          title: "Live Transcription (v0.1)",
-          tabBarLabel: "Live",
+          headerTitle: () => <BenkiLogo width={100} height={28} />,
         }}
       />
       <Tab.Screen
@@ -92,6 +86,16 @@ function MainTabs() {
         options={{
           title: "History",
           tabBarLabel: "History",
+          headerTitle: () => <BenkiLogo width={100} height={28} />,
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          title: "Profile",
+          tabBarLabel: "Profile",
+          headerTitle: () => <BenkiLogo width={100} height={28} />,
         }}
       />
     </Tab.Navigator>
@@ -107,7 +111,7 @@ export default function RootNavigator() {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#2196F3" />
+        <ActivityIndicator size="large" color="#FF3B00" />
       </View>
     );
   }

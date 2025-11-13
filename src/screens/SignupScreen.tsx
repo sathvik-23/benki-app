@@ -12,6 +12,7 @@ import {
   ScrollView,
 } from "react-native";
 import { useAuth } from "../contexts/AuthContext";
+import { BenkiLogo } from "../components/BenkiLogo";
 
 export default function SignupScreen({ navigation }: any) {
   const [email, setEmail] = useState("");
@@ -68,7 +69,9 @@ export default function SignupScreen({ navigation }: any) {
     >
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.content}>
-          <Text style={styles.title}>Bolt</Text>
+          <View style={styles.logoContainer}>
+            <BenkiLogo width={140} height={40} />
+          </View>
           <Text style={styles.subtitle}>Create your account</Text>
 
           <View style={styles.form}>
@@ -157,12 +160,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 20,
   },
-  title: {
-    fontSize: 48,
-    fontWeight: "700",
-    textAlign: "center",
+  logoContainer: {
+    alignItems: "center",
     marginBottom: 8,
-    color: "#2196F3",
   },
   subtitle: {
     fontSize: 16,
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   primaryButton: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#FF3B00",
   },
   googleButton: {
     backgroundColor: "#fff",
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   footerLink: {
-    color: "#2196F3",
+    color: "#FF3B00",
     fontSize: 14,
     fontWeight: "600",
   },

@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#f0f7ff",
+    backgroundColor: "#fff5f0",
     padding: 12,
     borderRadius: 8,
     marginBottom: 16,
     borderWidth: 1,
-    borderColor: "#2196F3",
+    borderColor: "#FF3B00",
   },
   sessionInfo: {
     flex: 1,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   badge: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#FF3B00",
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 12,
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     color: "#666",
   },
   newSessionButton: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#FF3B00",
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 6,

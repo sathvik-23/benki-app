@@ -105,7 +105,7 @@ export default function HistoryScreen() {
   };
 
   const getSessionTypeLabel = (type: string) => {
-    return type === "single_record" ? "Record" : "Live";
+    return "Record";
   };
 
   const handleSessionPress = (session: Session) => {
@@ -166,7 +166,7 @@ export default function HistoryScreen() {
   if (loading && sessions.length === 0) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#2196F3" />
+        <ActivityIndicator size="large" color="#FF3B00" />
       </View>
     );
   }
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   sessionTypeBadge: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#FF3B00",
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 12,

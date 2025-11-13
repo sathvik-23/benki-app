@@ -128,7 +128,7 @@ export default function RecordScreen() {
       setIsRecording(true);
       setRecordingDurationMillis(0);
       setStatusMessage("Recording...");
-      setTranscript(""); // Clear previous transcript
+      // Don't clear transcript - keep it visible until new session
     } catch (error) {
       console.error("Failed to start recording:", error);
       Alert.alert("Error", "Failed to start recording. Please try again.");
@@ -210,7 +210,7 @@ export default function RecordScreen() {
       }
 
       setCurrentSession(session);
-      setTranscript("");
+      setTranscript(""); // Clear transcript only when new session is created
       setStatusMessage("New session created");
     } catch (error) {
       console.error("Failed to create session:", error);
@@ -221,8 +221,6 @@ export default function RecordScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Record & Transcribe</Text>
-
         <SessionIndicator
           session={currentSession}
           onNewSession={handleNewSession}
@@ -246,11 +244,13 @@ export default function RecordScreen() {
           />
         </View>
 
-        {transcript ? (
+        {(transcript || currentSession) ? (
           <View style={styles.transcriptContainer}>
             <Text style={styles.transcriptLabel}>Transcript:</Text>
             <ScrollView style={styles.transcriptScroll}>
-              <Text style={styles.transcriptText}>{transcript}</Text>
+              <Text style={styles.transcriptText}>
+                {transcript || "No transcript yet. Start recording to transcribe."}
+              </Text>
             </ScrollView>
           </View>
         ) : null}
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
   timer: {
     fontSize: 32,
     fontWeight: "600",
-    color: "#2196F3",
+    color: "#FF3B00",
     marginTop: 20,
     marginBottom: 10,
   },

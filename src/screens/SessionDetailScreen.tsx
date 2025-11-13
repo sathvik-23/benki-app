@@ -100,13 +100,13 @@ export default function SessionDetailScreen() {
   };
 
   const getSessionTypeLabel = (type: string) => {
-    return type === "single_record" ? "Record" : "Live Transcription";
+    return type === "single_record" ? "Record" : "Record";
   };
 
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#2196F3" />
+        <ActivityIndicator size="large" color="#FF3B00" />
       </View>
     );
   }
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   typeBadge: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#FF3B00",
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 16,
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
   copyButton: {
     paddingHorizontal: 12,
     paddingVertical: 6,
-    backgroundColor: "#2196F3",
+    backgroundColor: "#FF3B00",
     borderRadius: 6,
   },
   copyButtonText: {
