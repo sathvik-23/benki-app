@@ -156,6 +156,29 @@ export const sessionService = {
   },
 
   /**
+   * Get transcription chunks for a session
+   */
+  async getSessionChunks(
+    sessionId: string
+  ): Promise<{ data: { transcript_text: string; chunk_index: number }[] | null; error: Error | null }> {
+    try {
+      const { data, error } = await supabase
+        .from("transcription_chunks")
+        .select("transcript_text, chunk_index")
+        .eq("session_id", sessionId)
+        .order("chunk_index", { ascending: true });
+
+      if (error) {
+        return { data: null, error: error as Error };
+      }
+
+      return { data: data as { transcript_text: string; chunk_index: number }[], error: null };
+    } catch (error) {
+      return { data: null, error: error as Error };
+    }
+  },
+
+  /**
    * Add a transcription chunk to a session
    */
   async addChunkToSession(

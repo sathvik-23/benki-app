@@ -26,6 +26,7 @@ export default function RecordScreen() {
   const [transcript, setTranscript] = useState("");
   const [isTranscribing, setIsTranscribing] = useState(false);
   const [currentSession, setCurrentSession] = useState<Session | null>(null);
+  const [chunkIndex, setChunkIndex] = useState(0);
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -41,6 +42,22 @@ export default function RecordScreen() {
         // Load current session
         const { data: session } = await sessionService.getCurrentSession();
         setCurrentSession(session);
+        
+        // Load existing transcript chunks if session exists
+        if (session) {
+          const { data: chunks } = await sessionService.getSessionChunks(session.id);
+          if (chunks && chunks.length > 0) {
+            const existingTranscript = chunks.map(chunk => chunk.transcript_text).join(" ");
+            setTranscript(existingTranscript);
+            // Set chunk index to the next available index
+            const maxIndex = Math.max(...chunks.map(chunk => chunk.chunk_index));
+            setChunkIndex(maxIndex + 1);
+          } else {
+            setChunkIndex(0);
+          }
+        } else {
+          setChunkIndex(0);
+        }
       } catch (error) {
         console.error("Failed to initialize:", error);
       }
@@ -162,20 +179,28 @@ export default function RecordScreen() {
       // Upload and transcribe
       const text = await uploadAndTranscribeAsync(uri);
 
-      setTranscript(text);
+      // Append new transcript to existing transcript
+      setTranscript((prev) => {
+        const separator = prev ? " " : "";
+        return prev + separator + text;
+      });
       setStatusMessage("Done");
 
       // Save to session if we have one
       if (currentSession) {
+        const currentChunkIndex = chunkIndex;
         const { error: chunkError } = await sessionService.addChunkToSession(
           currentSession.id,
           text,
           recordingDurationMillis,
-          0
+          currentChunkIndex
         );
 
         if (chunkError) {
           console.error("Failed to save chunk:", chunkError);
+        } else {
+          // Increment chunk index for next recording
+          setChunkIndex(currentChunkIndex + 1);
         }
       }
     } catch (error) {
@@ -211,6 +236,7 @@ export default function RecordScreen() {
 
       setCurrentSession(session);
       setTranscript(""); // Clear transcript only when new session is created
+      setChunkIndex(0); // Reset chunk index for new session
       setStatusMessage("New session created");
     } catch (error) {
       console.error("Failed to create session:", error);

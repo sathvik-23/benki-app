@@ -16,26 +16,13 @@ import { Session } from "../types/supabase";
 
 export default function HistoryScreen() {
   const navigation = useNavigation();
-  const { signOut, user } = useAuth();
+  const { user } = useAuth();
   const [sessions, setSessions] = useState<Session[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [offset, setOffset] = useState(0);
-
-  const handleLogout = () => {
-    Alert.alert("Sign Out", "Are you sure you want to sign out?", [
-      { text: "Cancel", style: "cancel" },
-      {
-        text: "Sign Out",
-        style: "destructive",
-        onPress: async () => {
-          await signOut();
-        },
-      },
-    ]);
-  };
 
   const loadSessions = useCallback(async (reset: boolean = false) => {
     try {
@@ -173,16 +160,6 @@ export default function HistoryScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        {user && (
-          <View style={styles.userInfo}>
-            <Text style={styles.userEmail}>{user.email}</Text>
-          </View>
-        )}
-        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <Text style={styles.logoutText}>Sign Out</Text>
-        </TouchableOpacity>
-      </View>
       <FlatList
         data={sessions}
         renderItem={renderSessionItem}
@@ -210,32 +187,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#e0e0e0",
-  },
-  userInfo: {
-    flex: 1,
-  },
-  userEmail: {
-    fontSize: 14,
-    color: "#666",
-  },
-  logoutButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    backgroundColor: "#f44336",
-    borderRadius: 6,
-  },
-  logoutText: {
-    color: "#fff",
-    fontSize: 14,
-    fontWeight: "600",
   },
   listContent: {
     padding: 16,

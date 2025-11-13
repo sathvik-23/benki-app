@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useAuth } from "../contexts/AuthContext";
 import { ActivityIndicator, View, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import RecordScreen from "../screens/RecordScreen";
 import HistoryScreen from "../screens/HistoryScreen";
 import SessionDetailScreen from "../screens/SessionDetailScreen";
@@ -78,6 +79,9 @@ function MainTabs() {
           title: "Record",
           tabBarLabel: "Record",
           headerTitle: () => <BenkiLogo width={100} height={28} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="mic" size={size} color={color} />
+          ),
         }}
       />
       <Tab.Screen
@@ -87,6 +91,9 @@ function MainTabs() {
           title: "History",
           tabBarLabel: "History",
           headerTitle: () => <BenkiLogo width={100} height={28} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="time-outline" size={size} color={color} />
+          ),
         }}
       />
       <Tab.Screen
@@ -96,6 +103,9 @@ function MainTabs() {
           title: "Profile",
           tabBarLabel: "Profile",
           headerTitle: () => <BenkiLogo width={100} height={28} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-outline" size={size} color={color} />
+          ),
         }}
       />
     </Tab.Navigator>
