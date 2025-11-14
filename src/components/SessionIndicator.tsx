@@ -23,8 +23,7 @@ export function SessionIndicator({
     );
   }
 
-  const sessionTypeLabel =
-    session.session_type === "single_record" ? "Record" : "Live";
+  const sessionTypeLabel = "Record";
   const date = new Date(session.created_at).toLocaleDateString();
 
   return (

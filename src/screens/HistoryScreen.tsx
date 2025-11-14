@@ -133,7 +133,7 @@ export default function HistoryScreen() {
     if (!loadingMore) return null;
     return (
       <View style={styles.footerLoader}>
-        <ActivityIndicator size="small" color="#2196F3" />
+        <ActivityIndicator size="small" color="#FF3B00" />
       </View>
     );
   };
